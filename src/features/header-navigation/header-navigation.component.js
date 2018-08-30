@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import homePageConstants from '../../app-config/routes/home.page/home.page.config.constants';
 
 import('./header-navigation.styles.scss');
 
@@ -8,7 +9,7 @@ const Header = () => (
     <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to={homePageConstants.URL}>Home</Link>
         </li>
         <li>
           <Link to="/ads">Ads</Link>

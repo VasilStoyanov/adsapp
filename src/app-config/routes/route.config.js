@@ -1,3 +1,5 @@
-const routeConfig = {};
+import homePageConfig from './home.page/home.page.config';
 
-export default routeConfig;
+export default [
+  homePageConfig,
+];

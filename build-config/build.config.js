@@ -13,7 +13,7 @@ buildConfig.buildDirectory = path.resolve(__dirname, RELATIVE_PATH_TO_BUILD_DIRE
 
 buildConfig.rules = rules;
 buildConfig.plugins = plugins;
-buildConfig.entry = `${RELATIVE_PATH_TO_JAVASCRIPT_FILES}/${ENTRY_FILE_NAME}`;
+buildConfig.entry = ['@babel/polyfill', `${RELATIVE_PATH_TO_JAVASCRIPT_FILES}/${ENTRY_FILE_NAME}`];
 
 Object.freeze(buildConfig);
 module.exports = buildConfig;

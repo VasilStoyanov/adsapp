@@ -1,29 +1,20 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import DynamicImport from '../../common/dynamic-import/dynamic-import.component';
-import Home from '../../pages/home/home.page';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 // import RegistrationPage from '../../pages/user/registration/registration.page';
 
-const MainContent = () => (
-    <>
-      <Route exact path="/" component={Home} />
-      <Route
-        exact
-        path="/user/registration"
-        render={props => (
-          <DynamicImport load={() => import('./../../pages/user/registration/registration.page')}>
-            {
-            Component => (
-              Component === null
-                ? <><h1>Loading...</h1></>
-                : <Component {...props} />
-            )
-          }
-          </DynamicImport>
-        )}
-      />
-    </>
-);
+class MainContent extends Component {
+  render = () => {
+    const { children } = this.props;
+    const { routeConfig } = this.props;
+
+    return children({ ...this.props });
+  }
+}
+
+MainContent.propTypes = {
+  children: PropTypes.func.isRequired,
+  routeConfig: PropTypes.instanceOf(Object).isRequired,
+};
 
 
 export default MainContent;
