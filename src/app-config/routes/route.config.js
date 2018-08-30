@@ -1,4 +1,4 @@
-import homePageConfig from './home.page/home.page.config';
+import homePageConfig from './home.page.route.config/home.page.route.config';
 
 export default [
   homePageConfig,

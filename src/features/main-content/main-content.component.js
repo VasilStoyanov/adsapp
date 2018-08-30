@@ -1,7 +1,7 @@
 import React from 'react';
-import Route from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
-  arrayOf, shape, string, func,
+  arrayOf, shape, string,
 } from 'prop-types';
 import DynamicImport from '../../common/dynamic-import/dynamic-import.component';
 // import RegistrationPage from '../../pages/user/registration/registration.page';
@@ -9,18 +9,20 @@ import DynamicImport from '../../common/dynamic-import/dynamic-import.component'
 const MainContent = ({ routeConfigs }) => (
   <>
     {
-      routeConfigs.map(routeConfig => (
+      routeConfigs.map(currentRouteConfig => (
         <Route
-          {...routeConfig.routeProps}
+          {...currentRouteConfig.props}
           render={() => (
-            <DynamicImport load={routeConfig.pageComponent}>
+
+            <DynamicImport load={() => import(`../../pages/${currentRouteConfig.pagePath}`)}>
               {
-              Component => (
-                Component ? <Component />
-                  : <><h1>Loading...</h1></>
-              )
-            }
+                Component => (
+                  Component ? <Component />
+                    : <><h1>Loading...</h1></>
+                )
+              }
             </DynamicImport>
+
           )}
         />
       ))
@@ -31,7 +33,7 @@ const MainContent = ({ routeConfigs }) => (
 MainContent.propTypes = {
   routeConfigs: arrayOf(shape({
     url: string.isRequired,
-    pageComponent: func.isRequired,
+    pageComponent: string.isRequired,
   })).isRequired,
 };
 

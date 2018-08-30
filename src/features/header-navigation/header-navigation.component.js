@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import homePageConstants from '../../app-config/routes/home.page/home.page.config.constants';
+import homePageConstants from '../../app-config/routes/home.page.route.config/home.page.route.config.constants';
 
 import('./header-navigation.styles.scss');
 
