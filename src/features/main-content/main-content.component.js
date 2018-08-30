@@ -1,20 +1,38 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import Route from 'react-router-dom';
+import {
+  arrayOf, shape, string, func,
+} from 'prop-types';
+import DynamicImport from '../../common/dynamic-import/dynamic-import.component';
 // import RegistrationPage from '../../pages/user/registration/registration.page';
 
-class MainContent extends Component {
-  render = () => {
-    const { children } = this.props;
-    const { routeConfig } = this.props;
-
-    return children({ ...this.props });
-  }
-}
+const MainContent = ({ routeConfigs }) => (
+  <>
+    {
+      routeConfigs.map(routeConfig => (
+        <Route
+          {...routeConfig.routeProps}
+          render={() => (
+            <DynamicImport load={routeConfig.pageComponent}>
+              {
+              Component => (
+                Component ? <Component />
+                  : <><h1>Loading...</h1></>
+              )
+            }
+            </DynamicImport>
+          )}
+        />
+      ))
+    }
+  </>
+);
 
 MainContent.propTypes = {
-  children: PropTypes.func.isRequired,
-  routeConfig: PropTypes.instanceOf(Object).isRequired,
+  routeConfigs: arrayOf(shape({
+    url: string.isRequired,
+    pageComponent: func.isRequired,
+  })).isRequired,
 };
-
 
 export default MainContent;

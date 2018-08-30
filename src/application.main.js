@@ -3,8 +3,7 @@ import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 import client from './app-config/apollo/apollo.client';
-// import DynamicImport from './common/dynamic-import/dynamic-import.component';
-import routeConfig from './app-config/routes/route.config';
+import routeConfigs from './app-config/routes/route.config';
 import Header from './features/header-navigation/header-navigation.component';
 import MainContent from './features/main-content/main-content.component';
 
@@ -15,15 +14,7 @@ render(
     <Router>
       <>
         <Header />
-        <MainContent routeConfig={routeConfig}>
-          {
-            (Component, props) => (
-              Component === null
-                ? <><h1>Loading...</h1></>
-                : <Component {...props} />
-            )
-          }
-        </MainContent>
+        <MainContent routeConfigs={routeConfigs} />
       </>
     </Router>
   </ApolloProvider>,
