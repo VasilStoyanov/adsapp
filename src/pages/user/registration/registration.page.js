@@ -2,7 +2,7 @@ import React from 'react';
 
 const Registration = () => (
   <>
-    <div>User regestration page dynamicly loaded</div>
+    <div>User regestration page </div>
   </>
 );
 

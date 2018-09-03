@@ -8,9 +8,11 @@ class DynamicImport extends Component {
     const { load } = this.props;
 
     load()
-      .then(mod => this.setState({
-        component: mod.default,
-      }));
+      .then((mod) => {
+        this.setState({
+          component: mod.default,
+        });
+      });
   }
 
   render = () => {

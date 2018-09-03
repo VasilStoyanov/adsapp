@@ -1,16 +1,11 @@
-import CONSTANTS from './home.page.route.config.constants';
-import createRouteFor from '../../../utils/route-builder/route-builder';
+import MODULE_CONSTS from './home.page.route.config.constants';
 
-const createRouteForHomePageUsing = createRouteFor(CONSTANTS.NAME);
-
-const homePageConfig = createRouteForHomePageUsing({
-  url: CONSTANTS.URL,
-  folderName: CONSTANTS.FOLDER_NAME,
-  entryFile: CONSTANTS.HOME_PAGE_MAIN_FILE,
-  props: {
-    path: CONSTANTS.URL,
+export default Object.freeze({
+  name: MODULE_CONSTS.NAME,
+  url: MODULE_CONSTS.URL,
+  module: MODULE_CONSTS.MODULE,
+  props: Object.freeze({
+    path: MODULE_CONSTS.URL,
     exact: true,
-  },
+  }),
 });
-
-export default homePageConfig;

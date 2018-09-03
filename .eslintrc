@@ -6,6 +6,7 @@
     "eol-last": "off",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-filename-extension": "off",
+    "no-underscore-dangle": "off",
   },
   "globals": {
     "document": true

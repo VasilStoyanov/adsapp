@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import uuid from 'uuid';
 import {
-  arrayOf, shape, string,
+  arrayOf, shape, string, func,
 } from 'prop-types';
 import DynamicImport from '../../common/dynamic-import/dynamic-import.component';
 // import RegistrationPage from '../../pages/user/registration/registration.page';
@@ -12,9 +13,10 @@ const MainContent = ({ routeConfigs }) => (
       routeConfigs.map(currentRouteConfig => (
         <Route
           {...currentRouteConfig.props}
+          key={uuid()}
           render={() => (
 
-            <DynamicImport load={() => import(`../../pages/${currentRouteConfig.pagePath}`)}>
+            <DynamicImport load={currentRouteConfig.module}>
               {
                 Component => (
                   Component ? <Component />
@@ -33,7 +35,7 @@ const MainContent = ({ routeConfigs }) => (
 MainContent.propTypes = {
   routeConfigs: arrayOf(shape({
     url: string.isRequired,
-    pageComponent: string.isRequired,
+    module: func.isRequired,
   })).isRequired,
 };
 

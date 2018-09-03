@@ -10,8 +10,7 @@ const webpackConfig = {
   output: {
     publicPath: '/',
     path: buildDirectory,
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: 'bundle.js',
   },
   devServer: {
     contentBase: './dist/',
